@@ -13,7 +13,7 @@ Usage:
 
 Outputs:
 
-    1.2
+    1-2
     I like spaghetti
 
 ###Token List
