@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using CommandLine;
+using System.Text.RegularExpressions;
 
 namespace AssemblyInfo
 {
@@ -40,7 +41,8 @@ namespace AssemblyInfo
 
 			Console.WriteLine(result.Value.Template);
 			AssemblyInformation info = new AssemblyInformation(assembly);
-			Console.WriteLine(
+
+			string finalString = String.Format(
 				result.Value.Template
 				.ReplaceCaseInsensitiveFind("$MAJOR", info.Major)
 				.ReplaceCaseInsensitiveFind("$MINOR", info.Minor)
@@ -50,6 +52,10 @@ namespace AssemblyInfo
 				.ReplaceCaseInsensitiveFind("$INFORMATIONALVERSION", info.InformationalVersion)
 				.ReplaceCaseInsensitiveFind("$FULLNAME", info.FullName)
 				);
+
+			finalString = Regex.Unescape(finalString);
+
+			Console.WriteLine(finalString);
 
 		}
 
