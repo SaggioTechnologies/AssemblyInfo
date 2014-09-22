@@ -3,6 +3,8 @@ AssemblyInfo
 
 Queries the AssemblyInfo of a .NET assembly and formats the output according to you.  This is very useful for things like build scripts.
 
+[Download Latest Release](https://github.com/SaggioTechnologies/AssemblyInfo/releases/)
+
 Usage:
 
     AssemblyInfo.exe MyAssembly.dll -t "$major-$minor\r\nI like spaghetti"
