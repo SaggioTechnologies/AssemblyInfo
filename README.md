@@ -5,6 +5,8 @@ Queries the AssemblyInfo of a .NET assembly and formats the output according to 
 
 [Download Latest Release](https://github.com/SaggioTechnologies/AssemblyInfo/releases/)
 
+<a href="https://travis-ci.org/SaggioTechnologies/AssemblyInfo"><img src="https://travis-ci.org/SaggioTechnologies/AssemblyInfo.svg" title="Build Status Images"></a>
+
 Usage:
 
     AssemblyInfo.exe MyAssembly.dll -t "$major-$minor\r\nI like spaghetti"
