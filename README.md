@@ -1,7 +1,7 @@
 AssemblyInfo
 ============
 
-Queries the AssemblyInfo of a .NET assembly and formats the output according to you
+Queries the AssemblyInfo of a .NET assembly and formats the output according to you.  This is very useful for things like build scripts.
 
 Usage:
 
@@ -38,4 +38,12 @@ Outputs:
     3.5-rc1
     
 (works if the assembly has the AssembyInformationalVersion attribute set)
+
+
+### How to use it in a batch file (like a build script)
+
+    for /f "delims=" %%i in ('AssemblyInfo MyAssembly.dll -t $informationalversion') do set VERSION=%%i
+    ECHO %VERSION%
+
+
 
