@@ -39,7 +39,6 @@ namespace AssemblyInfo
 				return;
 			}
 
-			Console.WriteLine(result.Value.Template);
 			AssemblyInformation info = new AssemblyInformation(assembly);
 
 			string finalString = String.Format(

@@ -15,16 +15,38 @@ namespace AssemblyInfo
 		internal string ProductVersion { get; set; }
 		internal string Major { get; set; }
 		internal string Minor { get; set; }
-		internal string Build { get; set; }
 		internal string Revision { get; set; }
+		internal string Build { get; set; }
 		internal string FullName { get; set; }
 
 		internal AssemblyInformation(Assembly assembly)
 		{
 			_assembly = assembly;
 
-			GetInformationalVersion();
-			GetProductVersion();
+			this.InformationalVersion = string.Empty;
+			this.ProductVersion = string.Empty;
+			this.Major = string.Empty;
+			this.Minor = string.Empty;
+			this.Revision = string.Empty;
+			this.Build = string.Empty;
+			this.FullName = string.Empty;
+
+			try
+			{
+				AssemblyInformationalVersionAttribute attribute = (AssemblyInformationalVersionAttribute)_assembly.GetCustomAttributes(typeof(AssemblyInformationalVersionAttribute), false).FirstOrDefault();
+
+				if (attribute != null)
+				{
+					this.InformationalVersion = attribute.InformationalVersion;
+				}
+			}
+			catch { }
+
+			try
+			{
+				this.ProductVersion = FileVersionInfo.GetVersionInfo(_assembly.Location).ProductVersion;
+			}
+			catch { }
 
 			try
 			{
@@ -40,7 +62,7 @@ namespace AssemblyInfo
 
 			try
 			{
-				this.Minor = _assembly.GetName().Version.Major.ToString();
+				this.Minor = _assembly.GetName().Version.Minor.ToString();
 			}
 			catch { }
 
@@ -57,35 +79,5 @@ namespace AssemblyInfo
 			catch { }
 		}
 
-		private void GetInformationalVersion()
-		{
-			this.InformationalVersion = null;
-
-			try
-			{
-				AssemblyInformationalVersionAttribute attribute = (AssemblyInformationalVersionAttribute)_assembly.GetCustomAttributes(typeof(AssemblyInformationalVersionAttribute), false).FirstOrDefault();
-
-				if (attribute != null)
-				{
-					this.InformationalVersion = attribute.InformationalVersion;
-				}
-			}
-			catch
-			{
-				// null
-			}				
-		}
-
-		private void GetProductVersion()
-		{
-			try
-			{
-				this.ProductVersion = FileVersionInfo.GetVersionInfo(_assembly.Location).ProductVersion;
-			}
-			catch
-			{
-				this.ProductVersion = null;
-			}
-		}
 	}
 }
