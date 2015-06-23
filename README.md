@@ -9,12 +9,11 @@ Queries the AssemblyInfo of a .NET assembly and formats the output according to 
 
 Usage:
 
-    AssemblyInfo.exe MyAssembly.dll -t "$major-$minor\r\nI like spaghetti"
+    AssemblyInfo.exe MyAssembly.dll -t "$major.$minor"
 
 Outputs:
 
-    1-2
-    I like spaghetti
+    1.2
 
 ###Token List
 - $major - Major version number
@@ -35,6 +34,14 @@ Outputs:
 
 Example:    
     
+    AssemblyInfo.exe MyAssembly.dll -t "$major.$minor-$revision"
+    
+Outputs:
+
+    1.0-3
+    
+Example:    
+    
     AssemblyInfo.exe MyAssembly.dll -t "$informationalversion"
     
 Outputs:
@@ -43,6 +50,15 @@ Outputs:
     
 (works if the assembly has the AssembyInformationalVersion attribute set)
 
+Example (multi-line):
+
+    AssemblyInfo.exe MyAssembly.dll -t "$major.$minor\r\nI like spaghetti"
+
+Outputs:
+
+    1.2
+    I like spaghetti
+    
 
 ### How to use it in a batch file (like a build script)
 
